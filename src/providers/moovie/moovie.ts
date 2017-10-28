@@ -10,9 +10,14 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class MoovieProvider {
-
+	
+	public urlpadrao = "https://api.themoviedb.org/3";
   constructor(public http: Http) {
     console.log('Hello MoovieProvider Provider');
+  }
+  
+  getLatestMovies(){
+	  return this.http.get("urlpadrao/movie/latest");
   }
 
 }

@@ -12,18 +12,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-feed',
   templateUrl: 'feed.html',
+  providers: [
+  MoovieProvider]
 })
 export class FeedPage {
   public variavel = "valor";
  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+	public navCtrl: NavController, 
+	public navParams: NavParams, 
+	private movieProvider: MoovieProvider){
+  
   }
 	public func():void{
 		alert("Minha função");
 	}
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FeedPage');
-	//this.func();
+    this.movieProvider.getLatestMovies().subscribe(
+		data=>{
+				console.log(data);
+		}, error=>{
+			console.log(error);
+		}
+	)
   }
 
 }
